@@ -1,0 +1,33 @@
+<div *ngIf="loading" class="overlay">
+  <div class="spinner"></div>
+  <p>Remastering, please wait...</p>
+</div>
+<form (ngSubmit)="onSubmit()" class="upload-form">
+  
+  <!-- Hidden file input -->
+  <input type="file"
+         accept="audio/*"
+         #fileInput
+         (change)="onFileSelected($event)"
+         hidden>
+
+  <!-- Visible Material-styled button -->
+  <button mat-raised-button color="primary" type="button" (click)="fileInput.click()">
+    <mat-icon>upload</mat-icon>
+    Choose Audio File
+  </button>
+
+  <!-- Show selected file name -->
+  <p *ngIf="selectedFile"><strong>Selected:</strong> {{ selectedFile.name }}</p>
+
+  <!-- Submit -->
+  <button mat-stroked-button color="accent" type="submit" [disabled]="!selectedFile">
+    Submit
+  </button>
+</form>
+
+
+
+
+
+<router-outlet />
